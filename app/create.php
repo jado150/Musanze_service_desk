@@ -1,8 +1,5 @@
 <?php
-// load database connection using a path relative to this file
 include __DIR__ . '/../config/db.php';
-
-// pull in the Booking helper class
 require_once __DIR__ . '/Booking.php';
 
 $booking = new Booking($conn);
@@ -39,13 +36,15 @@ if(isset($_POST['save'])) {
     <input type="text" name="phone" required><br><br>
 
     <label>Service</label><br>
-    <select name="service" required>
+    <select name="service" id="service" required>
         <option value="">-- Choose Service --</option>
         <option value="Event">Event</option>
         <option value="Hotel">Hotel</option>
         <option value="Transport">Transport</option>
         <option value="Product">Product</option>
-    </select><br><br>
+    </select>
+    <p id="estimate" style="margin-top:5px; font-size:14px; color:green;">Estimated Cost: $0</p>
+<br>
 
     <label>Booking Date</label><br>
     <input type="date" name="date" required><br><br>
@@ -53,9 +52,6 @@ if(isset($_POST['save'])) {
     <button type="submit" name="save">Submit Booking</button>
 </form>
 
+<script src="assets/js/app.js"></script>
 </body>
 </html>
-
-
-
-<!-- irakiza jean bonheur reg n:25/31038 -->

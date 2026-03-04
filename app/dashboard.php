@@ -10,14 +10,23 @@ include __DIR__ . '/../app/Booking.php';
 
 $booking = new Booking($conn);
 
-// Handle actions
-if(isset($_GET['action'])){
-    $id = $_GET['id'];
-    if($_GET['action'] == 'complete'){
-        mysqli_query($conn, "UPDATE bookings SET status='Completed' WHERE id=$id");
-    } elseif($_GET['action'] == 'delete'){
-        mysqli_query($conn, "DELETE FROM bookings WHERE id=$id");
-    }
+// Handle status update
+if(isset($_POST['update_status'])){
+    $id = intval($_POST['id']);
+    $status = $_POST['status'];
+    $stmt = $conn->prepare("UPDATE bookings SET status=? WHERE id=?");
+    $stmt->bind_param("si", $status, $id);
+    $stmt->execute();
+    header("Location: dashboard.php");
+    exit();
+}
+
+// Handle delete
+if(isset($_GET['delete'])){
+    $id = intval($_GET['delete']);
+    $stmt = $conn->prepare("DELETE FROM bookings WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
     header("Location: dashboard.php");
     exit();
 }
@@ -43,8 +52,8 @@ $allBookings = $booking->getAllBookings();
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Phone</th>
         <th>Service</th>
+        <th>Total</th>
         <th>Date</th>
         <th>Status</th>
         <th>Action</th>
@@ -53,16 +62,29 @@ $allBookings = $booking->getAllBookings();
     <?php foreach($allBookings as $b): ?>
     <tr>
         <td><?php echo $b['id']; ?></td>
-        <td><?php echo $b['name']; ?></td>
-        <td><?php echo $b['phone']; ?></td>
-        <td><?php echo $b['service']; ?></td>
+        <td><?php echo $b['Client']; ?></td>
+        <td><?php echo $b['Services']; ?></td>
+        <td><?php echo $b['Total']; ?></td>
         <td><?php echo $b['date']; ?></td>
-        <td><?php echo isset($b['status']) ? $b['status'] : 'Pending'; ?></td>
+        <td><?php echo $b['status']; ?></td>
         <td>
-            <?php if(!isset($b['status']) || $b['status'] != 'Completed'): ?>
-                <a href="?action=complete&id=<?php echo $b['id']; ?>">Complete</a> |
-            <?php endif; ?>
-            <a href="?action=delete&id=<?php echo $b['id']; ?>" onclick="return confirm('Are you sure?')">Delete</a>
+            <form method="post" style="margin:0;">
+                <input type="hidden" name="id" value="<?php echo $b['id']; ?>">
+                <select name="status" onchange="this.form.submit()">
+                    <?php 
+                        $current = isset($b['status']) ? $b['status'] : 'Pending';
+                        $statuses = ['Pending','Completed','Cancelled'];
+                        foreach($statuses as $s){
+                            $selected = ($s == $current) ? 'selected' : '';
+                            echo "<option value='$s' $selected>$s</option>";
+                        }
+                    ?>
+                </select>
+                <input type="hidden" name="update_status">
+            </form>
+        </td>
+        <td>
+            <a href="?delete=<?php echo $b['id']; ?>" onclick="return confirm('Are you sure?')">Delete</a>
         </td>
     </tr>
     <?php endforeach; ?>
