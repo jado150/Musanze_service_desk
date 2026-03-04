@@ -1,17 +1,18 @@
 <?php
-// load database connection using a path relative to this file
-include __DIR__ . '/../config/db.php';
+// load the common DB connection; path goes up two levels to reach config
+include __DIR__ . '/../../config/db.php';
 
-// pull in the Booking helper class
-require_once __DIR__ . '/Booking.php';
+// load the Booking class (located in the main app folder)
+require_once __DIR__ . '/../../app/Booking.php';
+
 
 $booking = new Booking($conn);
 
 if(isset($_POST['save'])) {
-    $name    = $_POST['name'];
-    $phone   = $_POST['phone'];
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
     $service = $_POST['service'];
-    $date    = $_POST['date'];
+    $date = $_POST['date'];
 
     if($booking->saveBooking($name, $phone, $service, $date)) {
         $message = "Booking saved successfully!";

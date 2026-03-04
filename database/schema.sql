@@ -30,8 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `records` (
   `id` int(11) NOT NULL,
   `Client` varchar(30) NOT NULL,
+  `Phone` varchar(20) NOT NULL,
   `Services` varchar(30) NOT NULL,
-  `Total` int(20) NOT NULL,
+  `Total` int(20) NOT NULL DEFAULT 0,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

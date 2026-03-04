@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$dbname = "musanze_service_desk";
+$dbname = "schema";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 

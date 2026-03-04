@@ -8,18 +8,18 @@
 
 
 <div class="header">
-    <h1>Digital Service Desk</h1>
+    <h1>DIGITAL SERVICE DESK</h1>
     <p>Easy Booking & Service Management</p>
 </div>
 
 <hr>
 
 <div class="menu">
-    <a href="index.php">Home</a> 
-    <a href="booking.php">New Booking</a> 
-    <a href="records.php">View Records</a>
-    <a href="login.php">Login</a>
-    <a href="contact.php">Contact</a>
+    <a href="/CAT_GROUP_4_FEB_B/public/index.php">Home</a> 
+    <a href="/CAT_GROUP_4_FEB_B/app/create.php">Booking</a> 
+    <a href="/CAT_GROUP_4_FEB_B/records.php">View Records</a>
+    <a href="/CAT_GROUP_4_FEB_B/login.php">Login</a>
+    <a href="/CAT_GROUP_4_FEB_B/contact.php">Contact</a>
 </div>
 
 <hr>
@@ -57,8 +57,8 @@
         </p>
 
         <p>
-            📱 Phone: +250 7XX XXX XXX <br>
-            📧 Email: support@service.com
+            📱 Phone: +250 783539548 <br>
+            📧 Email: jeandedieuiyandemye@gmail.com
         </p>
     </div>
 
@@ -75,3 +75,7 @@
 
 </body>
 </html>
+
+
+<!-- Iyandemye Jeand De Dieu
+ reg number:25/30575 -->
