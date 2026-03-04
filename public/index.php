@@ -18,7 +18,7 @@
     <a href="/CAT_GROUP_4_FEB_B/public/index.php">Home</a> 
     <a href="/CAT_GROUP_4_FEB_B/app/create.php">Booking</a> 
     <a href="/CAT_GROUP_4_FEB_B/records.php">View Records</a>
-    <a href="/CAT_GROUP_4_FEB_B/login.php">Login</a>
+    <a href="/CAT_GROUP_4_FEB_B/app/login.php">Login</a>
     <a href="/CAT_GROUP_4_FEB_B/contact.php">Contact</a>
 </div>
 
